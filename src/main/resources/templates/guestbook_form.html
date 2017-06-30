@@ -11,18 +11,24 @@
 
         <h1>Guestbook</h1>
 
-        <p>Current entries in the guestbook:</p>
+        <div th:if="${entries.isEmpty()}">
+            <p>There are no comments in the Guestbook. What a pity.</p>
+        </div>
 
-        <table>
-            <tr>
-                <th>User</th><th>Comment</th><th></th>
-            </tr>
-            <tr th:each="entry: ${entries}">
-                <td th:text="${entry.user}"></td>
-                <td th:text="${entry.comment}"></td>
-                <td><a th:href="@{'/delete/' + ${entry.id}}">Delete</a></td>
-            </tr>
-        </table>
+        <div th:if="${!entries.isEmpty()}">
+            <p>Current comments in the Guestbook:</p>
+
+            <table>
+                <tr>
+                    <th>User</th><th>Comment</th><th></th>
+                </tr>
+                <tr th:each="entry: ${entries}">
+                    <td th:text="${entry.user}"></td>
+                    <td th:text="${entry.comment}"></td>
+                    <td><a th:href="@{'/delete/' + ${entry.id}}">Delete</a></td>
+                </tr>
+            </table>
+        </div>
 
         <h1>New Comment</h1>
         <form action="#" th:action="@{/}" th:object="${newEntry}" method="post">
