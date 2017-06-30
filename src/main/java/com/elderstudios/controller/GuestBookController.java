@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 /**
@@ -32,6 +33,14 @@ public class GuestBookController {
     public String addComment (@ModelAttribute ("newEntry") GuestBookEntry newEntry) {
 
         this.guestBookService.save (newEntry);
+
+        return "redirect:/";
+    }
+
+    @GetMapping (value = "/delete/{id}")
+    public String deleteComment (@PathVariable Integer id) {
+
+        this.guestBookService.delete (id);
 
         return "redirect:/";
     }

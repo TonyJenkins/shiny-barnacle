@@ -21,7 +21,11 @@ public class GuestBookService {
         return this.guestBookEntryRepository.findAll ();
     }
 
-    public void save(GuestBookEntry newEntry) {
+    public void save (GuestBookEntry newEntry) {
         this.guestBookEntryRepository.save (newEntry);
+    }
+
+    public void delete (Integer id) {
+        this.guestBookEntryRepository.delete (id);
     }
 }
