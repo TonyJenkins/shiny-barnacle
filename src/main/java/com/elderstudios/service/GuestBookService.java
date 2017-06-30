@@ -20,4 +20,8 @@ public class GuestBookService {
     public List <GuestBookEntry> findAllEntries() {
         return this.guestBookEntryRepository.findAll ();
     }
+
+    public void save(GuestBookEntry newEntry) {
+        this.guestBookEntryRepository.save (newEntry);
+    }
 }

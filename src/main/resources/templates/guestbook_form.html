@@ -23,5 +23,13 @@
             </tr>
         </table>
 
+        <h1>New Comment</h1>
+        <form action="#" th:action="@{/}" th:object="${newEntry}" method="post">
+            <p>User: <input type="text" th:field="*{user}" />
+               Comment: <input type="text" th:field="*{comment}" /></p>
+
+            <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
+        </form>
+
     </body>
 </html>
