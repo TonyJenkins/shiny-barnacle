@@ -36,6 +36,9 @@
             <p>User: <input type="text" th:field="*{user}" />
                Comment: <input type="text" th:field="*{comment}" /></p>
 
+            <p class="warning" th:if="${#fields.hasErrors('user')}">User cannot be empty.</p>
+            <p class="warning" th:if="${#fields.hasErrors('comment')}">Comment cannot be empty.</p>
+
             <p><input type="submit" value="Confirm" /> <input type="reset" value="Reset" /></p>
         </form>
 

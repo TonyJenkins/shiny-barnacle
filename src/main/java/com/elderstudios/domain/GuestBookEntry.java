@@ -1,5 +1,7 @@
 package com.elderstudios.domain;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 import javax.persistence.*;
 
 /**
@@ -15,7 +17,10 @@ public class GuestBookEntry {
     @Column (name = "entry_id")
     private Integer id;
 
+    @NotEmpty
     private String user;
+
+    @NotEmpty
     private String comment;
 
     public GuestBookEntry() {

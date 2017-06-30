@@ -5,10 +5,13 @@ import com.elderstudios.service.GuestBookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+
+import javax.validation.Valid;
 
 /**
  * Created by tony on 29/06/17.
@@ -30,11 +33,20 @@ public class GuestBookController {
     }
 
     @PostMapping (value = "/")
-    public String addComment (@ModelAttribute ("newEntry") GuestBookEntry newEntry) {
+    public String addComment (Model model,
+                              @Valid @ModelAttribute ("newEntry") GuestBookEntry newEntry,
+                              BindingResult bindingResult) {
 
-        this.guestBookService.save (newEntry);
+        if (bindingResult.hasErrors ()) {
+            model.addAttribute ("entries", this.guestBookService.findAllEntries ());
 
-        return "redirect:/";
+            return "guestbook_form";
+        }
+        else {
+            this.guestBookService.save(newEntry);
+
+            return "redirect:/";
+        }
     }
 
     @GetMapping (value = "/delete/{id}")
@@ -55,15 +67,25 @@ public class GuestBookController {
     }
 
     @PostMapping (value = "update/{id}")
-    public String saveComment (Model model, @ModelAttribute ("edit_guestbook_form") GuestBookEntry form, @PathVariable Integer id) {
+    public String saveComment (Model model,
+                               @Valid @ModelAttribute ("newEntry") GuestBookEntry newEntry,
+                               @PathVariable Integer id,
+                               BindingResult bindingResult) {
 
-        GuestBookEntry current = this.guestBookService.findOne (id);
+        if (bindingResult.hasErrors ()) {
+            model.addAttribute ("entries", this.guestBookService.findAllEntries ());
 
-        current.setUser (form.getUser ());
-        current.setComment (form.getComment ());
+            return "guestbook_form";
+        }
+        else {
+            GuestBookEntry current = this.guestBookService.findOne (id);
 
-        this.guestBookService.save (current);
+            current.setUser (newEntry.getUser());
+            current.setComment (newEntry.getComment());
 
-        return "redirect:/";
+            this.guestBookService.save(current);
+
+            return "redirect:/";
+        }
     }
 }
