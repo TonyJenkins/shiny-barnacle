@@ -19,3 +19,13 @@ td {
     background-color: azure;
     padding: 4px;
 }
+
+a, a:visited {
+    color: inherit;
+    text-decoration: none;
+    font-weight: bolder;
+}
+
+a:hover {
+    color: olivedrab;
+}
