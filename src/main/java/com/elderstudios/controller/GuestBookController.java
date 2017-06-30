@@ -68,14 +68,14 @@ public class GuestBookController {
 
     @PostMapping (value = "update/{id}")
     public String saveComment (Model model,
-                               @Valid @ModelAttribute ("newEntry") GuestBookEntry newEntry,
                                @PathVariable Integer id,
+                               @Valid @ModelAttribute ("newEntry") GuestBookEntry newEntry,
                                BindingResult bindingResult) {
 
         if (bindingResult.hasErrors ()) {
             model.addAttribute ("entries", this.guestBookService.findAllEntries ());
 
-            return "guestbook_form";
+            return "edit_guestbook_form";
         }
         else {
             GuestBookEntry current = this.guestBookService.findOne (id);
