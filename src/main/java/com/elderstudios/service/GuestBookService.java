@@ -28,4 +28,8 @@ public class GuestBookService {
     public void delete (Integer id) {
         this.guestBookEntryRepository.delete (id);
     }
+
+    public GuestBookEntry findOne(Integer id) {
+        return this.guestBookEntryRepository.findOne (id);
+    }
 }

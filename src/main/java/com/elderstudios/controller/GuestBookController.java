@@ -44,4 +44,26 @@ public class GuestBookController {
 
         return "redirect:/";
     }
+
+    @GetMapping (value = "update/{id}")
+    public String editComment (Model model, @PathVariable Integer id) {
+
+        model.addAttribute ("entries", this.guestBookService.findAllEntries ());
+        model.addAttribute ("newEntry", this.guestBookService.findOne (id));
+
+        return "edit_guestbook_form";
+    }
+
+    @PostMapping (value = "update/{id}")
+    public String saveComment (Model model, @ModelAttribute ("edit_guestbook_form") GuestBookEntry form, @PathVariable Integer id) {
+
+        GuestBookEntry current = this.guestBookService.findOne (id);
+
+        current.setUser (form.getUser ());
+        current.setComment (form.getComment ());
+
+        this.guestBookService.save (current);
+
+        return "redirect:/";
+    }
 }
