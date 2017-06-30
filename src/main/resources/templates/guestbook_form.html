@@ -5,21 +5,23 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link rel="stylesheet" type="text/css" th:href="@{/css/main.css}" />
 </head>
-  <body>
+    <body>
 
-    <h1>Guestbook</h1>
+        <img th:src="@{/images/spring-logo.png}" />
 
-    <p>Current entries in the guestbook:</p>
+        <h1>Guestbook</h1>
 
-  <table>
-      <tr>
-          <th>User</th><th>Comment</th>
-      </tr>
-      <tr th:each="entry: ${entries}">
-          <td th:text="${entry.user}"></td>
-          <td th:text="${entry.comment}"></td>
-      </tr>
-  </table>
+        <p>Current entries in the guestbook:</p>
 
-  </body>
+        <table>
+            <tr>
+                <th>User</th><th>Comment</th>
+            </tr>
+            <tr th:each="entry: ${entries}">
+                <td th:text="${entry.user}"></td>
+                <td th:text="${entry.comment}"></td>
+            </tr>
+        </table>
+
+    </body>
 </html>
