@@ -23,7 +23,7 @@ public class GuestBookService {
 
         for (GuestBookEntry e: entries) {
             if (StringUtils.containsAny (e.getComment (), "<>")) {
-                e.setComment ("Redacted.");
+                e.setComment ("Redacted - HTML Content?");
             }
         }
 
