@@ -2,6 +2,7 @@ package com.elderstudios.service;
 
 import com.elderstudios.domain.GuestBookEntry;
 import com.elderstudios.domain.GuestBookEntryRepository;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,7 +19,15 @@ public class GuestBookService {
     private GuestBookEntryRepository guestBookEntryRepository;
 
     public List <GuestBookEntry> findAllEntries() {
-        return this.guestBookEntryRepository.findAll ();
+        List <GuestBookEntry> entries = this.guestBookEntryRepository.findAll ();
+
+        for (GuestBookEntry e: entries) {
+            if (StringUtils.containsAny (e.getComment (), "<>")) {
+                e.setComment ("Redacted.");
+            }
+        }
+
+        return entries;
     }
 
     public void save (GuestBookEntry newEntry) {
