@@ -3,6 +3,7 @@ package com.elderstudios.domain;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -12,6 +13,7 @@ import java.util.Date;
  */
 
 @Entity
+@EntityListeners (AuditingEntityListener.class)
 @Table (name = "entries")
 public class GuestBookEntry {
 
@@ -32,7 +34,7 @@ public class GuestBookEntry {
 
     @LastModifiedDate
     @Column (name = "modified_date")
-    private Date lastUpdated;
+    private Date modified;
 
     public GuestBookEntry () {
     }
@@ -42,11 +44,11 @@ public class GuestBookEntry {
         this.comment = comment;
     }
 
-    public GuestBookEntry (String user, String comment, Date created, Date lastUpdated) {
+    public GuestBookEntry (String user, String comment, Date created, Date modified) {
         this.user = user;
         this.comment = comment;
         this.created = created;
-        this.lastUpdated = lastUpdated;
+        this.modified = modified;
     }
 
     public Integer getId() {
@@ -81,12 +83,12 @@ public class GuestBookEntry {
         this.created = created;
     }
 
-    public Date getLastUpdated () {
-        return lastUpdated;
+    public Date getModified () {
+        return modified;
     }
 
-    public void setLastUpdated (Date lastUpdated) {
-        this.lastUpdated = lastUpdated;
+    public void setModified (Date modified) {
+        this.modified = modified;
     }
 
     @Override
@@ -96,7 +98,7 @@ public class GuestBookEntry {
                 ", user='" + user + '\'' +
                 ", comment='" + comment + '\'' +
                 ", created=" + created +
-                ", lastUpdated=" + lastUpdated +
+                ", modified=" + modified +
                 '}';
     }
 
