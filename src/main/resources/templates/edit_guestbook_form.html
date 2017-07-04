@@ -11,7 +11,7 @@
 
         <h1>Guestbook</h1>
 
-        <div th:include="guestbook_display"></div>
+        <div th:replace="guestbook_display"></div>
 
         <h1>Change Comment</h1>
         <form action="" th:object="${newEntry}" method="post">
