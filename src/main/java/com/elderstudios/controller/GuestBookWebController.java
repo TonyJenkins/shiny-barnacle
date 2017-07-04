@@ -18,7 +18,7 @@ import javax.validation.Valid;
  */
 
 @Controller
-public class GuestBookController {
+public class GuestBookWebController {
 
     @Autowired
     private GuestBookService guestBookService;
