@@ -15,8 +15,8 @@
 
         <h1>Change Comment</h1>
         <form action="" th:object="${newEntry}" method="post">
-            <p>User: <input type="text" th:field="*{user}" />
-               Comment: <input type="text" th:field="*{comment}" /></p>
+            <p>User: <input type="text" size="32" th:field="*{user}" />
+               Comment: <input type="text" size="128" th:field="*{comment}" /></p>
 
             <p class="warning" th:if="${#fields.hasErrors('user')}">User cannot be empty.</p>
             <p class="warning" th:if="${#fields.hasErrors('comment')}">Comment cannot be empty.</p>
