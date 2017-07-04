@@ -12,7 +12,7 @@
         <tr th:each="entry: ${entries}">
             <td th:text="${entry.user}"></td>
             <td th:text="${entry.comment}"></td>
-            <td th:text="${#dates.format (entry.modified, 'EEEE MMMMM dd YYYY hh:mm')}"></td>
+            <td th:text="${#dates.format (entry.modified, 'EEEE MMMMM dd YYYY HH:mm')}"></td>
             <td><a th:href="@{'/update/' + ${entry.id}}">Update</a></td>
             <td><a th:href="@{'/delete/' + ${entry.id}}">Delete</a></td>
         </tr>
