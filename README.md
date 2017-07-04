@@ -11,7 +11,7 @@ cd into the main directory and run
 
 The application will boot up and make itself available on port 8080.
 
-The application can an in-memory H2 database, or a MySQL database. 
+The application can use an in-memory H2 database, or a MySQL database. 
 Config for both is in `application.properties.` The default config
 will destroy and recreate the database each time the application
 runs. This can also be changed in `application.properties` by tweaking
