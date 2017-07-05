@@ -42,7 +42,11 @@ public class GuestBookService {
         return this.guestBookEntryRepository.findOne (id);
     }
 
-    public List<GuestBookEntry> getGuestBookEntryById (Integer id) {
+    public List <GuestBookEntry> getGuestBookEntryById (Integer id) {
         return this.guestBookEntryRepository.getGuestBookEntryById (id);
+    }
+
+    public List <String> findDistinctUsers () {
+        return this.guestBookEntryRepository.findDistinctUsers ();
     }
 }

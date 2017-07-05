@@ -31,5 +31,10 @@ public class GuestBookRestController {
         return this.guestBookService.getGuestBookEntryById (id);
     }
 
+    @GetMapping (prefix + "/users")
+    public List <String> apiGetDistinctUsers () {
+        return this.guestBookService.findDistinctUsers ();
+    }
+
 
 }
