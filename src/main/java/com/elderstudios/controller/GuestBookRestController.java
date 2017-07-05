@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.persistence.criteria.CriteriaBuilder;
 import java.util.List;
 
 /**
@@ -34,6 +35,11 @@ public class GuestBookRestController {
     @GetMapping (prefix + "/users")
     public List <String> apiGetDistinctUsers () {
         return this.guestBookService.findDistinctUsers ();
+    }
+
+    @GetMapping (prefix + "/comment_count")
+    public Integer getNumberOfComments () {
+        return this.guestBookService.getNumberOfComments ();
     }
 
     @GetMapping (prefix + "/average_length")

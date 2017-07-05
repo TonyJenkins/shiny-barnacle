@@ -51,6 +51,10 @@ public class GuestBookService {
         return this.guestBookEntryRepository.findDistinctUsers ();
     }
 
+    public Integer getNumberOfComments () {
+        return this.guestBookEntryRepository.findAll ().size ();
+    }
+
     public Double getAverageCommentLength () {
         return this.guestBookEntryRepository.getAverageCommentLength ();
     }
