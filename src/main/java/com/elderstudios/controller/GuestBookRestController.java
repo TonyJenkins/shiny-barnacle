@@ -15,11 +15,13 @@ import java.util.List;
 @RestController
 public class GuestBookRestController {
 
+    private static final String prefix = "api";
+
     @Autowired
     private GuestBookService guestBookService;
 
-    @GetMapping ("/comments")
-    public List <GuestBookEntry> helloWorld () {
+    @GetMapping (prefix + "/comments")
+    public List <GuestBookEntry> apiAllComments () {
         return this.guestBookService.findAllEntries ();
     }
 }
