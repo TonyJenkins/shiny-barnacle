@@ -18,4 +18,7 @@ public interface GuestBookEntryRepository extends CrudRepository <GuestBookEntry
     @Query (value = "select distinct user from entries order by user", nativeQuery = true)
     List <String> findDistinctUsers ();
 
+    @Query (value = "select avg (length (comment)) from entries", nativeQuery = true)
+    Double getAverageCommentLength ();
+
 }

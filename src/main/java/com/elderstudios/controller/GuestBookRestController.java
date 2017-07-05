@@ -36,5 +36,8 @@ public class GuestBookRestController {
         return this.guestBookService.findDistinctUsers ();
     }
 
-
+    @GetMapping (prefix + "/average_length")
+    public Double getAverageCommentLength () {
+        return this.guestBookService.getAverageCommentLength ();
+    }
 }

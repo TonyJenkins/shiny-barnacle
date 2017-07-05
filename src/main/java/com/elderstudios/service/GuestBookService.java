@@ -49,4 +49,8 @@ public class GuestBookService {
     public List <String> findDistinctUsers () {
         return this.guestBookEntryRepository.findDistinctUsers ();
     }
+
+    public Double getAverageCommentLength () {
+        return this.guestBookEntryRepository.getAverageCommentLength ();
+    }
 }
