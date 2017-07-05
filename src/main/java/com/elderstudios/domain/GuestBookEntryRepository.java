@@ -12,4 +12,6 @@ public interface GuestBookEntryRepository extends CrudRepository <GuestBookEntry
     @Override
     List <GuestBookEntry> findAll ();
 
+    List <GuestBookEntry> getGuestBookEntryById (Integer id);
+
 }
