@@ -6,6 +6,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -52,5 +53,19 @@ public class GuestBookService {
 
     public Double getAverageCommentLength () {
         return this.guestBookEntryRepository.getAverageCommentLength ();
+    }
+
+    public List <String> getLongestComment () {
+
+        List <String> longestComments = new ArrayList <String> ();
+
+        for (GuestBookEntry c : this.guestBookEntryRepository.findAll ()) {
+            if (c.getComment ().length () == this.guestBookEntryRepository.getMaximumCommentLength ()) {
+                longestComments.add (c.getComment ());
+            }
+        }
+
+        return longestComments;
+
     }
 }

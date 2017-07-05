@@ -21,4 +21,7 @@ public interface GuestBookEntryRepository extends CrudRepository <GuestBookEntry
     @Query (value = "select avg (length (comment)) from entries", nativeQuery = true)
     Double getAverageCommentLength ();
 
+    @Query (value = "select max(length (comment)) from entries", nativeQuery = true)
+    Integer getMaximumCommentLength ();
+
 }

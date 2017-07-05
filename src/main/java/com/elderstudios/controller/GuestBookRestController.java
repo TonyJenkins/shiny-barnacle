@@ -40,4 +40,9 @@ public class GuestBookRestController {
     public Double getAverageCommentLength () {
         return this.guestBookService.getAverageCommentLength ();
     }
+
+    @GetMapping (prefix + "/longest_comment")
+    public List <String> getLongestComment () {
+        return this.guestBookService.getLongestComment ();
+    }
 }
