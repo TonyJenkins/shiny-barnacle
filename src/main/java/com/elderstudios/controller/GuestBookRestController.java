@@ -60,4 +60,9 @@ public class GuestBookRestController {
     public void addComment (@RequestBody GuestBookEntry guestBookEntry) {
         guestBookService.save (guestBookEntry);
     }
+
+    @PutMapping ("/update")
+    public void updateComment (@RequestBody GuestBookEntry guestBookEntry) {
+        guestBookService.save (guestBookEntry);
+    }
 }
