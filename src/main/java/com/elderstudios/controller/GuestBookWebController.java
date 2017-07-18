@@ -86,10 +86,10 @@ public class GuestBookWebController {
         else {
             GuestBookEntry current = this.guestBookService.findOne (id);
 
-            current.setUser (newEntry.getUser());
-            current.setComment (newEntry.getComment());
+            current.setUser (newEntry.getUser ());
+            current.setComment (newEntry.getComment ());
 
-            this.guestBookService.save(current);
+            this.guestBookService.save (current);
 
             return HOME_PAGE_REDIRECT;
         }

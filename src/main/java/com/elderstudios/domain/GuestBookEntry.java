@@ -51,27 +51,27 @@ public class GuestBookEntry {
         this.modified = modified;
     }
 
-    public Integer getId() {
+    public Integer getId () {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId (Integer id) {
         this.id = id;
     }
 
-    public String getUser() {
+    public String getUser () {
         return user;
     }
 
-    public void setUser(String user) {
+    public void setUser (String user) {
         this.user = user;
     }
 
-    public String getComment() {
+    public String getComment () {
         return comment;
     }
 
-    public void setComment(String comment) {
+    public void setComment (String comment) {
         this.comment = comment;
     }
 
