@@ -55,4 +55,9 @@ public class GuestBookRestController {
     public void deleteCommentById (@PathVariable ("id") Integer id) {
         this.guestBookService.delete (id);
     }
+
+    @PostMapping ("/add")
+    public void addComment (@RequestBody GuestBookEntry guestBookEntry) {
+        guestBookService.save (guestBookEntry);
+    }
 }
