@@ -5,7 +5,6 @@ import com.elderstudios.service.GuestBookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import javax.persistence.criteria.CriteriaBuilder;
 import java.util.List;
 
 /**
@@ -15,8 +14,6 @@ import java.util.List;
 @RestController
 @RequestMapping ("/api")
 public class GuestBookRestController {
-
-    //private static final String prefix = "api";
 
     @Autowired
     private GuestBookService guestBookService;

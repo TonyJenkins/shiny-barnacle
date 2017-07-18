@@ -20,16 +20,22 @@ import javax.validation.Valid;
 @Controller
 public class GuestBookWebController {
 
+    private static final String FORM_ENTRIES_ID = "entries";
+    private static final String HOME_PAGE_REDIRECT = "redirect:/";
+
+    private static final String GUESTBOOK_FORM = "guestbook_form";
+    private static final String GUESTBOOK_FORM_EDIT = "edit_guestbook_form";
+
     @Autowired
     private GuestBookService guestBookService;
 
     @GetMapping (value = "/")
     public String displayGuestBook (Model model) {
 
-        model.addAttribute ("entries", this.guestBookService.findAllEntries ());
+        model.addAttribute (FORM_ENTRIES_ID, this.guestBookService.findAllEntries ());
         model.addAttribute ("newEntry", new GuestBookEntry ());
 
-        return "guestbook_form";
+        return GUESTBOOK_FORM;
     }
 
     @PostMapping (value = "/")
@@ -38,14 +44,14 @@ public class GuestBookWebController {
                               BindingResult bindingResult) {
 
         if (bindingResult.hasErrors ()) {
-            model.addAttribute ("entries", this.guestBookService.findAllEntries ());
+            model.addAttribute (FORM_ENTRIES_ID, this.guestBookService.findAllEntries ());
 
-            return "guestbook_form";
+            return GUESTBOOK_FORM;
         }
         else {
             this.guestBookService.save(newEntry);
 
-            return "redirect:/";
+            return HOME_PAGE_REDIRECT;
         }
     }
 
@@ -54,16 +60,16 @@ public class GuestBookWebController {
 
         this.guestBookService.delete (id);
 
-        return "redirect:/";
+        return HOME_PAGE_REDIRECT;
     }
 
     @GetMapping (value = "update/{id}")
     public String editComment (Model model, @PathVariable Integer id) {
 
-        model.addAttribute ("entries", this.guestBookService.findAllEntries ());
+        model.addAttribute (FORM_ENTRIES_ID, this.guestBookService.findAllEntries ());
         model.addAttribute ("newEntry", this.guestBookService.findOne (id));
 
-        return "edit_guestbook_form";
+        return GUESTBOOK_FORM_EDIT;
     }
 
     @PostMapping (value = "update/{id}")
@@ -73,9 +79,9 @@ public class GuestBookWebController {
                                BindingResult bindingResult) {
 
         if (bindingResult.hasErrors ()) {
-            model.addAttribute ("entries", this.guestBookService.findAllEntries ());
+            model.addAttribute (FORM_ENTRIES_ID, this.guestBookService.findAllEntries ());
 
-            return "edit_guestbook_form";
+            return GUESTBOOK_FORM_EDIT;
         }
         else {
             GuestBookEntry current = this.guestBookService.findOne (id);
@@ -85,7 +91,7 @@ public class GuestBookWebController {
 
             this.guestBookService.save(current);
 
-            return "redirect:/";
+            return HOME_PAGE_REDIRECT;
         }
     }
 }
