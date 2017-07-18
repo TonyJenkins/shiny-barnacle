@@ -51,4 +51,8 @@ public class GuestBookRestController {
         return this.guestBookService.getLongestComment ();
     }
 
+    @DeleteMapping ("/delete/{id}")
+    public void deleteCommentById (@PathVariable ("id") Integer id) {
+        this.guestBookService.delete (id);
+    }
 }
