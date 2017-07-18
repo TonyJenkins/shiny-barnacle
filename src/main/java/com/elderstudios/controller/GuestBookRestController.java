@@ -3,9 +3,7 @@ package com.elderstudios.controller;
 import com.elderstudios.domain.GuestBookEntry;
 import com.elderstudios.service.GuestBookService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import java.util.List;
@@ -15,40 +13,42 @@ import java.util.List;
  */
 
 @RestController
+@RequestMapping ("/api")
 public class GuestBookRestController {
 
-    private static final String prefix = "api";
+    //private static final String prefix = "api";
 
     @Autowired
     private GuestBookService guestBookService;
 
-    @GetMapping (prefix + "/comments")
+    @GetMapping ("/comments")
     public List <GuestBookEntry> apiAllComments () {
         return this.guestBookService.findAllEntries ();
     }
 
-    @GetMapping (prefix + "/find/{id}")
+    @GetMapping ("/find/{id}")
     public List <GuestBookEntry> apiCommentById (@PathVariable ("id") Integer id) {
         return this.guestBookService.getGuestBookEntryById (id);
     }
 
-    @GetMapping (prefix + "/users")
+    @GetMapping ("/users")
     public List <String> apiGetDistinctUsers () {
         return this.guestBookService.findDistinctUsers ();
     }
 
-    @GetMapping (prefix + "/comment_count")
+    @GetMapping ("/comment_count")
     public Integer getNumberOfComments () {
         return this.guestBookService.getNumberOfComments ();
     }
 
-    @GetMapping (prefix + "/average_length")
+    @GetMapping ("/average_length")
     public Double getAverageCommentLength () {
         return this.guestBookService.getAverageCommentLength ();
     }
 
-    @GetMapping (prefix + "/longest_comment")
+    @GetMapping ("/longest_comment")
     public List <String> getLongestComment () {
         return this.guestBookService.getLongestComment ();
     }
+
 }
