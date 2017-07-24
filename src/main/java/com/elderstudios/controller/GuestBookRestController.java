@@ -19,33 +19,33 @@ public class GuestBookRestController {
     private GuestBookService guestBookService;
 
     @GetMapping ("/comments")
-    public List <GuestBookEntry> apiAllComments () {
+    public List <GuestBookEntry> getAllComments () {
         return this.guestBookService.findAllEntries ();
     }
 
     @GetMapping ("/find/{id}")
-    public List <GuestBookEntry> apiCommentById (@PathVariable ("id") Integer id) {
-        return this.guestBookService.getGuestBookEntryById (id);
+    public List <GuestBookEntry> getCommentById (@PathVariable ("id") Integer id) {
+        return this.guestBookService.findGuestBookEntryById (id);
     }
 
     @GetMapping ("/users")
-    public List <String> apiGetDistinctUsers () {
+    public List <String> getDistinctUsers () {
         return this.guestBookService.findDistinctUsers ();
     }
 
     @GetMapping ("/comment_count")
     public Integer getNumberOfComments () {
-        return this.guestBookService.getNumberOfComments ();
+        return this.guestBookService.findNumberOfComments ();
     }
 
     @GetMapping ("/average_length")
     public Double getAverageCommentLength () {
-        return this.guestBookService.getAverageCommentLength ();
+        return this.guestBookService.findAverageCommentLength ();
     }
 
     @GetMapping ("/longest_comment")
     public List <String> getLongestComment () {
-        return this.guestBookService.getLongestComment ();
+        return this.guestBookService.findLongestComment ();
     }
 
     @DeleteMapping ("/delete/{id}")

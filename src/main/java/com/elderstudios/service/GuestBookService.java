@@ -39,32 +39,32 @@ public class GuestBookService {
         this.guestBookEntryRepository.delete (id);
     }
 
-    public GuestBookEntry findOne(Integer id) {
+    public GuestBookEntry findOne (Integer id) {
         return this.guestBookEntryRepository.findOne (id);
     }
 
-    public List <GuestBookEntry> getGuestBookEntryById (Integer id) {
-        return this.guestBookEntryRepository.getGuestBookEntryById (id);
+    public List <GuestBookEntry> findGuestBookEntryById (Integer id) {
+        return this.guestBookEntryRepository.findGuestBookEntryById (id);
     }
 
     public List <String> findDistinctUsers () {
         return this.guestBookEntryRepository.findDistinctUsers ();
     }
 
-    public Integer getNumberOfComments () {
+    public Integer findNumberOfComments () {
         return this.guestBookEntryRepository.findAll ().size ();
     }
 
-    public Double getAverageCommentLength () {
-        return this.guestBookEntryRepository.getAverageCommentLength ();
+    public Double findAverageCommentLength () {
+        return this.guestBookEntryRepository.findAverageCommentLength ();
     }
 
-    public List <String> getLongestComment () {
+    public List <String> findLongestComment () {
 
         List <String> longestComments = new ArrayList <String> ();
 
         for (GuestBookEntry c : this.guestBookEntryRepository.findAll ()) {
-            if (c.getComment ().length () == this.guestBookEntryRepository.getMaximumCommentLength ()) {
+            if (c.getComment ().length () == this.guestBookEntryRepository.findMaximumCommentLength ()) {
                 longestComments.add (c.getComment ());
             }
         }

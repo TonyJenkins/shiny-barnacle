@@ -13,15 +13,15 @@ public interface GuestBookEntryRepository extends CrudRepository <GuestBookEntry
     @Override
     List <GuestBookEntry> findAll ();
 
-    List <GuestBookEntry> getGuestBookEntryById (Integer id);
+    List <GuestBookEntry> findGuestBookEntryById (Integer id);
 
     @Query (value = "select distinct user from entries order by user", nativeQuery = true)
     List <String> findDistinctUsers ();
 
     @Query (value = "select avg (length (comment)) from entries", nativeQuery = true)
-    Double getAverageCommentLength ();
+    Double findAverageCommentLength ();
 
     @Query (value = "select max(length (comment)) from entries", nativeQuery = true)
-    Integer getMaximumCommentLength ();
+    Integer findMaximumCommentLength ();
 
 }
